@@ -1,29 +1,29 @@
 if [ $# -eq 0 ]; then
-    echo "name image"
+    echo "apply/delete name image port replicat"
     exit 1
 fi
-cat << EOF | kubectl apply -f -
+cat << EOF | kubectl $1 -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: $1
+  name: $2
   labels:
-    app: $1
+    app: $2
 spec:
   selector:
     matchLabels:
-      app: $1
-      tier: $1
-  replicas: 2
+      app: $2
+      tier: $2
+  replicas: $5
   template:
     metadata:
       labels:
-        app: $1
-        tier: $1
+        app: $2
+        tier: $2
     spec:
       containers:
-      - name: $1
-        image: $2
+      - name: image-$2
+        image: $3
         ports:
-        - containerPort: $3
+        - containerPort: $4
 EOF
