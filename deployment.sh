@@ -1,3 +1,7 @@
+if [ $# -eq 0 ]; then
+    echo "name image"
+    exit 1
+fi
 cat << EOF | kubectl apply -f -
 apiVersion: apps/v1
 kind: Deployment
