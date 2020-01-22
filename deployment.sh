@@ -6,9 +6,7 @@ cat << EOF | kubectl $1 -f -
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: $2
-  labels:
-    app: $2
+  name: pod-$2
 spec:
   selector:
     matchLabels:

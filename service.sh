@@ -6,7 +6,7 @@ cat << EOF | kubectl $1 -f -
 apiVersion: v1
 kind: Service
 metadata:
-  name: $2-backend
+  name: backend-$2
 spec:
   type: NodePort
   ports:

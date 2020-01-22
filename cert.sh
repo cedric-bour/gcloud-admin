@@ -6,7 +6,7 @@ cat << EOF | kubectl $1 -f -
 apiVersion: networking.gke.io/v1beta1
 kind: ManagedCertificate
 metadata:
-  name: $2
+  name: cert-$2
 spec:
   domains:
     - $3
