@@ -1,5 +1,5 @@
 if [ $# -eq 0 ]; then
-    echo "apply/delete name port targetport"
+    echo "apply/delete name port targetport protocol NodePort/LoadBalancer"
     exit 1
 fi
 cat << EOF | kubectl $1 -f -
@@ -8,10 +8,11 @@ kind: Service
 metadata:
   name: backend-$2
 spec:
-  type: NodePort
+  type: $6
   ports:
-    - port: $3
-      targetPort: $4
+  - protocol: $5
+    port: $3
+    targetPort: $4
   selector:
     app: $2
     tier: $2
