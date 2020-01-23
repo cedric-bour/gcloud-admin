@@ -1,5 +1,5 @@
 if [ $# -eq 0 ]; then
-    echo "apply/delete name port"
+    echo "apply/delete name port targetport"
     exit 1
 fi
 cat << EOF | kubectl $1 -f -
@@ -11,7 +11,7 @@ spec:
   type: NodePort
   ports:
     - port: $3
-      targetPort: $3
+      targetPort: $4
   selector:
     app: $2
     tier: $2
